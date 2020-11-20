@@ -5,6 +5,7 @@ docker run --name gcp --group-add 0 -v "/var/run/docker.sock:/var/run/docker.soc
 
 gcloud auth login
 
+gcloud config set project PROJECT_ID
 
 
 
