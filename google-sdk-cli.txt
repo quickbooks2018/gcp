@@ -1,0 +1,18 @@
+# DockerHub
+https://hub.docker.com/r/google/cloud-sdk/
+
+docker run --name gcp --group-add 0 -v "/var/run/docker.sock:/var/run/docker.sock" -id google/cloud-sdk:latest      --> run with powershell (Admin)
+
+gcloud auth login
+
+
+
+
+# Youtube
+
+Install Google Cloud SDK & CLI for Mac Linux & Windows
+
+
+
+# Windows docker Installation
+# https://www.youtube.com/watch?v=AnG25pIhyQY

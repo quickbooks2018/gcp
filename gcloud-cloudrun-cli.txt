@@ -1,0 +1,60 @@
+gcloud config set run/platform managed 
+
+gcloud config set run/region us-east1   ---> Note: This is not like AWS
+
+gcloud auth configure-docker
+
+
+# Running a Container from a gcp-CLI ---> Image must be present in GCR (Google Container Registry) ---> unauthenticated invocations ---> allow to make it public
+
+gcloud run deploy helloword3 --image gcr.io/cloudrun/hello --region us-central1  ---> You can also change from your default
+
+
+# Put my own Image on GCP
+# https://cloud.google.com/container-registry
+# 
+# https://cloud.google.com/container-registry/docs/quickstart
+# TAG
+docker tag gcr.io/google-samples/hello-app:1.0 gcr.io/PROJECT_ID/quickstart-image:tag1
+
+# Container Custom Port
+https://cloud.google.com/run/docs/configuring/containers#command-line 
+--port 80  ---> containr port
+
+# Container configurations
+# https://cloud.google.com/compute/docs/containers/configuring-options-to-run-containers#gcloud_1
+
+# Update existing service
+gcloud run services update SERVICE --port PORT
+
+
+# STATELESS DOCKER CONTAINER 
+
+
+docker pull quickbooks2018/blue ---> YOUR CONTAINER
+
+docker tag quickbooks2018/blue  gcr.io/playground-s-11-abc36592/blue:latest  ---> TAG for GCR
+
+docker push gcr.io/playground-s-11-abc36592/blue:latest ---> PUT IN GCR
+
+gcloud run deploy blue --image gcr.io/playground-s-11-abc36592/blue:latest --port 80 --allow-unauthenticated --region us-central1 --allow-unauthenticated  ---> RUN A CUSTOM Container
+
+gcloud run services delete springboot-websocket-chatapp --region us-central1
+
+
+
+
+
+
+
+# NO SUPPORT for WEBSOCKET in GCP ---> YET  ---> https://cloud.google.com/run/docs/issues
+
+docker pull quickbooks2018/springboot-websocket-chatapp ---> YOUR CONTAINER
+
+docker tag quickbooks2018/springboot-websocket-chatapp  gcr.io/playground-s-11-abc36592/springboot-websocket-chatapp:latest  ---> TAG for GCR
+
+gcr.io/playground-s-11-abc36592/springboot-websocket-chatapp:latest  ---> PUT IN GCR
+
+gcloud run deploy springboot-websocket-chatapp --image gcr.io/playground-s-11-abc36592/springboot-websocket-chatapp:latest --allow-unauthenticated --region us-central1  ---> RUN A CUSTOM Container
+
+gcloud run services delete springboot-websocket-chatapp --region us-central1
