@@ -1,0 +1,33 @@
+# Gcp runcloud revisions
+
+docker pull quickbooks2018/blue
+
+docker pull quickbooks2018/green
+
+
+docker tag quickbooks2018/blue  gcr.io/playground-s-11-5643f993/color:blue
+
+docker tag quickbooks2018/green  gcr.io/playground-s-11-5643f993/color:green
+
+docker push gcr.io/playground-s-11-5643f993/color:blue
+
+docker push gcr.io/playground-s-11-5643f993/color:green
+
+gcloud run deploy color --image gcr.io/playground-s-11-5643f993/color:blue --port 80 --allow-unauthenticated --region us-central1 
+
+gcloud run deploy color --image gcr.io/playground-s-11-5643f993/color:green --port 80 --allow-unauthenticated --region us-central1 
+
+
+# By Default rolling updates set to 100% latest
+
+
+# Mentioned below setup the new revision with 0% traffic
+gcloud run deploy color --image gcr.io/playground-s-11-5643f993/color:green --port 80 --allow-unauthenticated --region us-central1 --no-traffic
+
+# Switch to mentioned above revision (must provide the name of new revision)
+
+gcloud run services update-traffic color --to-revisions color-00005-fab=80 --region us-central1
+
+# Default latest revision command
+
+gcloud alpha run services update-traffic color --to-latest --region us-central1
