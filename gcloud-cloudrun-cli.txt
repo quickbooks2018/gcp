@@ -39,7 +39,7 @@ docker tag quickbooks2018/blue  gcr.io/playground-s-11-abc36592/blue:latest  ---
 
 docker push gcr.io/playground-s-11-abc36592/blue:latest ---> PUT IN GCR
 
-gcloud run deploy blue --image gcr.io/playground-s-11-abc36592/blue:latest --port 80 --allow-unauthenticated --region us-central1 --allow-unauthenticated  ---> RUN A CUSTOM Container
+gcloud run deploy blue --image gcr.io/playground-s-11-abc36592/blue:latest --port 80 --allow-unauthenticated --region us-central1    ( --allow-unauthenticated )  ---> RUN A CUSTOM Container
 
 gcloud run services delete springboot-websocket-chatapp --region us-central1
 
