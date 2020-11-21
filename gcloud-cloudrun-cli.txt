@@ -4,6 +4,8 @@ gcloud config set run/region us-east1   ---> Note: This is not like AWS
 
 gcloud auth configure-docker
 
+---> ENABLE containerregistry.googleapis.com' is not enabled for consumer  ----> (CONSOLE)GUI
+
 
 # Running a Container from a gcp-CLI ---> Image must be present in GCR (Google Container Registry) ---> unauthenticated invocations ---> allow to make it public
 
