@@ -4,7 +4,7 @@ https://hub.docker.com/r/google/cloud-sdk/
 docker run --name gcp --group-add 0 -v "/var/run/docker.sock:/var/run/docker.sock" -id google/cloud-sdk:latest      --> run with powershell (Admin)
 
 # FOLDER MOUNT
-docker run --name gcp --group-add 0 -v "/var/run/docker.sock:/var/run/docker.sock" -v "c:/Users/Muhammad Asim/Desktop/amazonlinux:/root" -id google/cloud-sdk:latest
+docker run --name gcp --group-add 0 -v "/var/run/docker.sock:/var/run/docker.sock" -v "c:/Users/Muhammad Asim/Desktop/GCP:/root" -id google/cloud-sdk:latest
 
 gcloud auth login
 
