@@ -1,0 +1,60 @@
+# Google Official ---> Cloud Storage (CODE FOR APPS)---> https://cloud.google.com/storage/docs/uploading-objects#storage-upload-object-code-sample
+# Google Official ---> Cloud Storage (Public Buckets) ---> https://cloud.google.com/storage/docs/access-control/making-data-public
+# Google Official ---> Cloud Storage ---> Client Libraries ---> https://cloud.google.com/storage/docs/reference/libraries
+# google official ---> cloud Storage (Detailed) ---> https://cloud.google.com/storage/docs/how-to
+
+
+# Cloud Storage Issue (Is image or file being always downloaded from Google Cloud Storage on click?)---> https://stackoverflow.com/questions/53936885/is-image-or-file-being-always-downloaded-from-google-cloud-storage-on-click
+
+---> go for PNG
+
+
+
+# Google Official ---> Cloud Build & Cloud Run ---> https://cloud.google.com/run/docs/quickstarts/build-and-deploy#python
+
+
+
+gcloud services enable run.googleapis.com \
+cloudbuild.googleapis.com
+
+# Instead of build an image from docker ---> we will build the image from "cloudbuild"
+
+gcloud builds submit --tag gcr.io/PROJECTID/imagenameyouwant:version .
+
+
+
+
+
+gcloud services enable run.googleapis.com \
+cloudbuild.googleapis.com
+
+
+# Build and Push the Image to GCR
+gcloud builds submit --tag gcr.io/playground-s-11-7694bfcb/image:v1 .
+
+gcloud builds submit --tag gcr.io/playground-s-11-7694bfcb/image:v2 .
+
+
+# Deploy to CloudRun
+
+gcloud config set run/platform managed 
+
+gcloud config set run/region us-east1   ---> Note: This is not like AWS
+
+gcloud run deploy image --image gcr.io/playground-s-11-7694bfcb/image:v1 --port 8080 --allow-unauthenticated --region us-central1 
+
+gcloud run deploy image --image gcr.io/playground-s-11-7694bfcb/image:v2 --port 8080 --allow-unauthenticated --region us-central1 
+
+
+
+
+
+# Redeploy same or new version the image will gone because it was living in the container
+
+gcloud run deploy image --image gcr.io/playground-s-11-7694bfcb/image:v1 --port 8080 --allow-unauthenticated --region us-central1 
+
+
+
+
+# Redeploy same or new version the image will NOT gone, because it is now living in the GCP Cloud storage.
+gcloud run deploy image --image gcr.io/playground-s-11-7694bfcb/image:v2 --port 8080 --allow-unauthenticated --region us-central1 
