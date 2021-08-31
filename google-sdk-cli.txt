@@ -1,6 +1,12 @@
 # DockerHub
 https://hub.docker.com/r/google/cloud-sdk/
 
+# GCP/SDK docker run
+
+docker run --name gcp -id google/cloud-sdk:latest       # ---> google/sdk
+
+
+# Docker Image Build
 docker run --name gcp --group-add 0 -v "/var/run/docker.sock:/var/run/docker.sock" -id google/cloud-sdk:latest      --> run with powershell (Admin)
 
 # FOLDER MOUNT
@@ -9,7 +15,10 @@ docker run --name gcp --group-add 0 -v "/var/run/docker.sock:/var/run/docker.soc
 gcloud auth login
 
 gcloud config set project PROJECT_ID
-
+                          ##################
+                          # Existing Project
+                          ###################
+gcloud config set project playground-s-11-c9bc5f10
 
 
 # Youtube
