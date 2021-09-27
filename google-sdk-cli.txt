@@ -9,6 +9,8 @@ docker run --name gcp -id google/cloud-sdk:latest       # ---> google/sdk
 # Docker Image Build
 docker run --name gcp --group-add 0 -v "/var/run/docker.sock:/var/run/docker.sock" -id google/cloud-sdk:latest      --> run with powershell (Admin)
 
+gcloud components update
+
 # FOLDER MOUNT
 docker run --name gcp --group-add 0 -v "/var/run/docker.sock:/var/run/docker.sock" -v "c:/Users/Muhammad Asim/Desktop/GCP:/root" -id google/cloud-sdk:latest
 
