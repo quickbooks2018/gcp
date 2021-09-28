@@ -60,3 +60,21 @@ gcr.io/playground-s-11-abc36592/springboot-websocket-chatapp:latest  ---> PUT IN
 gcloud run deploy springboot-websocket-chatapp --image gcr.io/playground-s-11-abc36592/springboot-websocket-chatapp:latest --allow-unauthenticated --region us-central1  ---> RUN A CUSTOM Container
 
 gcloud run services delete springboot-websocket-chatapp --region us-central1
+
+
+
+
+########
+# Deploy   # Use This
+########
+gcloud run deploy blue --image gcr.io/playground-s-11-abc36592/blue:latest --max-instances 1 --cpu 1 --port 80 --allow-unauthenticated --region us-central1    ( --allow-unauthenticated )  ---> RUN A CUSTOM Container
+
+
+gcloud run deploy blue --image gcr.io/playground-s-11-84f05956/blue --max-instances 1 --cpu 1 --port 80 --allow-unauthenticated --region us-central1
+
+
+##########################
+# Update Existing Services # This
+###########################
+gcloud run services update blue --image gcr.io/playground-s-11-abc36592/blue:latest --max-instances 1 --cpu 1 --port 80 --allow-unauthenticated --region us-central1    ( --allow-unauthenticated )  ---> RUN A CUSTOM Container
+
