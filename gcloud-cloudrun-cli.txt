@@ -48,6 +48,9 @@ gcloud run services delete springboot-websocket-chatapp --region us-central1
 WebSocket App quickbooks2018/springboot-websocket-chatapp
 ##########################################################
 
+###########################################
+quickbooks2018/springboot-websocket-chatapp
+###########################################
 
 
 # NO SUPPORT for WEBSOCKET in GCP ---> YET  ---> https://cloud.google.com/run/docs/issues
