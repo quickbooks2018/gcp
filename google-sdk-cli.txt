@@ -6,13 +6,22 @@ https://hub.docker.com/r/google/cloud-sdk/
 docker run --name gcp -id google/cloud-sdk:latest       # ---> google/sdk
 
 
+##############
+# Folder Mount
+##############
+docker run --name gcp -v "c:/Users/Muhammad Asim/Desktop/gcp:/mnt" -id google/cloud-sdk:latest
+
+####################
 # Docker Image Build
+####################
 docker run --name gcp --group-add 0 -v "/var/run/docker.sock:/var/run/docker.sock" -id google/cloud-sdk:latest      --> run with powershell (Admin)
 
 gcloud components update
 
-# FOLDER MOUNT
-docker run --name gcp --group-add 0 -v "/var/run/docker.sock:/var/run/docker.sock" -v "c:/Users/Muhammad Asim/Desktop/GCP:/root" -id google/cloud-sdk:latest
+#################################
+# Folder mount with docker socket
+#################################
+docker run --name gcp --group-add 0 -v "/var/run/docker.sock:/var/run/docker.sock" -v "c:/Users/Muhammad Asim/Desktop/GCP:/mnt" -id google/cloud-sdk:latest
 
 gcloud auth login
 
