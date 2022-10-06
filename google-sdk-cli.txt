@@ -9,7 +9,7 @@ docker run --name gcp -id google/cloud-sdk:latest       # ---> google/sdk
 ##############
 # Folder Mount
 ##############
-docker run --name gcp -w /mnt -v "c:/Users/Muhammad Asim/Desktop/gcp:/mnt" -id google/cloud-sdk:latest
+docker run --name gcp --network host -w /mnt -v "c:/Users/Muhammad Asim/Desktop/gcp:/mnt" -id google/cloud-sdk:latest
 
 ####################
 # Docker Image Build
