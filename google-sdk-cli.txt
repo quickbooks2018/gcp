@@ -11,6 +11,11 @@ docker run --name gcp -id google/cloud-sdk:latest       # ---> google/sdk
 ##############
 docker run --name gcp --network host -w /mnt -v "c:/Users/Muhammad Asim/Desktop/gcp:/mnt" -id google/cloud-sdk:latest
 
+or
+
+docker run --name gke --network host -w /root -v "c:/Users/Muhammad Asim/Desktop/gke:/root" -id google/cloud-sdk:latest
+
+
 ####################
 # Docker Image Build
 ####################
