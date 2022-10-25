@@ -1,5 +1,7 @@
 # Python Sample app
 
+# https://cloud.google.com/appengine/docs/flexible/testing-and-deploying-your-app?tab=python
+
 # https://cloud.google.com/error-reporting/docs/check-app-crash
 
 git clone https://github.com/GoogleCloudPlatform/python-docs-samples
