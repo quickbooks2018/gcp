@@ -1,0 +1,13 @@
+# Python Sample app
+
+# https://cloud.google.com/error-reporting/docs/check-app-crash
+
+git clone https://github.com/GoogleCloudPlatform/python-docs-samples
+
+cd python-docs-samples/appengine/standard_python3/hello_world
+
+pip install -r requirements.txt
+
+gcloud app deploy
+
+gcloud app browse
