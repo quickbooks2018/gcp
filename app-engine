@@ -10,6 +10,9 @@ cd python-docs-samples/appengine/standard_python3/hello_world
 
 pip install -r requirements.txt
 
-gcloud app deploy
+gcloud app deploy # https://cloud.google.com/appengine/docs/flexible/reference/app-yaml?tab=python#service  (Note: in app.yaml define service: cloudgeeks)
+
+runtime: python39
+service: cloudgeeks
 
 gcloud app browse
