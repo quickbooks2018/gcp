@@ -8,8 +8,6 @@ git clone https://github.com/GoogleCloudPlatform/python-docs-samples
 
 cd python-docs-samples/appengine/standard_python3/hello_world
 
-pip install -r requirements.txt
-
 gcloud app deploy # https://cloud.google.com/appengine/docs/flexible/reference/app-yaml?tab=python#service  (Note: in app.yaml define service: cloudgeeks) # deploy with default & then name it.
 
 runtime: python39
