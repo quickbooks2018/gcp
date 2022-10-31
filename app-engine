@@ -24,3 +24,18 @@ gcloud app browse --project playground-s-11-6af822fe
 gcloud app versions list --project playground-s-11-6af822fe
 
 gcloud app versions list --filter=TRAFFIC_SPLIT=0 --project playground-s-11-6af822fe
+
+
+
+#!/bin/bash
+# https://stackoverflow.com/questions/58815968/how-do-i-filter-latest-app-engine-version-from-all-of-the-versions-using-gcloud
+
+PROJECT='playground-s-11-6af822fe'
+Zero_Traffic=$(gcloud app versions list --filter="traffic_split=0" --format="table(version.id)" --project $PROJECT | tail -n +2)
+for row in $Zero_Traffic
+do
+  echo  $row
+  yes | gcloud app versions delete $row --project $PROJECT
+done
+
+# End
