@@ -14,3 +14,13 @@ runtime: python39
 service: cloudgeeks
 
 gcloud app browse
+
+
+################
+# App Engine Cli
+################
+# https://cloud.google.com/sdk/gcloud/reference/app/versions 
+
+gcloud app versions list --project cloudgeeks
+
+gcloud app versions list --filter=TRAFFIC_SPLIT=0 --project cloudgeeks
