@@ -21,6 +21,6 @@ gcloud app browse --project playground-s-11-6af822fe
 ################
 # https://cloud.google.com/sdk/gcloud/reference/app/versions 
 
-gcloud app versions list --project cloudgeeks
+gcloud app versions list --project playground-s-11-6af822fe
 
-gcloud app versions list --filter=TRAFFIC_SPLIT=0 --project cloudgeeks
+gcloud app versions list --filter=TRAFFIC_SPLIT=0 --project playground-s-11-6af822fe
