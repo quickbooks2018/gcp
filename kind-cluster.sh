@@ -59,8 +59,9 @@ kind create --name cloudgeeks cluster --config kind-config.yaml --image kindest/
   
   # ssh -N -L 8443:0.0.0.0:8443 cloud_user@d8d0041c.mylabserver.com
   
-  export KUBECONFIG=".kube/config"
+  # export KUBECONFIG=".kube/config"
   
+  # port forwarding ---> ssh -N -L 8090:0.0.0.0:8090 cloud_user@d8d0041c.mylabserver.com
   
   #End
   
