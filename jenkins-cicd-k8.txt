@@ -1,0 +1,89 @@
+def SDK_YAML="""
+apiVersion: v1
+kind: Pod
+metadata:
+labels:
+  scope: jenkins
+spec:
+  containers:
+  - name: gcloud
+    image: google/cloud-sdk:slim
+    command:
+    - cat
+    tty: true
+  - name: node
+    image: node:16-alpine3.12
+    command:
+    - cat
+    tty: true
+"""
+
+
+pipeline {
+  agent none
+
+ 
+
+  stages {
+    stage('Input Checks'){
+      steps {
+        script {
+
+      
+          if(! env.PROJECT){
+            error("NO PROJECT defined - stopping")
+          }
+
+
+        }   
+      }
+    }
+
+    stage('GCloud Auth Login') {
+      agent {
+        kubernetes {
+          defaultContainer 'jnlp'
+          yaml SDK_YAML
+        }
+      }
+  
+
+            steps {
+                script {
+                container('gcloud') {
+                    withCredentials([
+               file(credentialsId: "${GCLOUD_CREDS_ID}", variable: 'GCLOUD_CREDS_FILE'),
+              ])
+              {
+               sh '''
+                  echo "Login to GCP..."
+                  echo $GCLOUD_CREDS_FILE
+                  gcloud auth activate-service-account --key-file="$GCLOUD_CREDS_FILE"
+                  # List
+                  echo "my project id is $PROJECT"
+                  echo 'asim' > hello.txt
+                  docker ps -a
+
+               '''
+              }
+            }
+           }
+
+
+           container('node') {
+                    sh 'npm version'
+                    sh 'cat hello.txt'
+                    sh 'ls -last'
+                }
+
+
+
+
+
+            
+  }
+ }
+}
+
+
+}
