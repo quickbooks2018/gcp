@@ -1,0 +1,165 @@
+###########
+- GKE Setup
+###########
+- https://cloud.google.com/architecture/jenkins-on-kubernetes-engine-tutorial
+
+1.
+export CLUSTER_NAME='cloudgeeks'
+export PROJECT='playground-s-11-ff39ff41'
+export ZONE='us-east1-c'
+
+# Make sure to enable GKE before applying this command
+
+gcloud container clusters create ${CLUSTER_NAME} \
+  --zone ${ZONE} --scopes cloud-platform --project ${PROJECT}
+
+
+2a. kubectl cluster-info
+2b .kubectl get nodes
+
+
+3. Add yourself as a cluster administrator in the cluster's RBAC so that you can give Jenkins permissions in the cluster
+
+kubectl create clusterrolebinding cluster-admin-binding \
+  --clusterrole=cluster-admin --user=$(gcloud config get-value account)
+
+
+###################
+# Helm Installaion
+##################
+curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+chmod 700 get_helm.sh
+./get_helm.sh
+
+####################
+# Helm Jenkins Setup
+####################
+helm repo add jenkinsci https://charts.jenkins.io
+helm repo update
+helm install jenkins --namespace jenkins --create-namespace jenkinsci/jenkins
+
+
+# Set up port forwarding to the Jenkins UI from Cloud Shell
+kubectl -n jenkins port-forward svc/jenkins --address 0.0.0.0 8090:8080
+
+# Jenkins Secrets
+
+kubectl get secrets -n jenkins 
+
+kubectl get secrets/jenkins -n jenkins -o yaml
+
+jenkins-admin-password: b1NuY1NpWmdnR25ZemtuNWx5Mnl0NQ==
+jenkins-admin-user: YWRtaW4=
+
+echo -n 'b1NuY1NpWmdnR25ZemtuNWx5Mnl0NQ==' | base64 -d
+oSncSiZggGnYzkn5ly2yt5
+
+##################
+# Jekins k8 Plugin
+##################
+# Install k8 Plugin ( with helm it is pre installed)
+##################
+# Jenkins GKE Pipe
+##################
+
+def SDK_YAML="""
+apiVersion: v1
+kind: Pod
+metadata:
+labels:
+  scope: jenkins
+spec:
+  containers:
+  - name: gcloud
+    image: google/cloud-sdk:slim
+    command:
+    - cat
+    tty: true
+  - name: node
+    image: node:16-alpine3.12
+    command:
+    - cat
+    tty: true
+"""
+
+
+pipeline {
+  agent none
+
+  parameters {
+  
+  string(name: 'PROJECT',
+        defaultValue: params.PROJECT ?: 'playground-s-11-ff39ff41',
+        description: 'Google Cloud project name, "playground-s-11-ff39ff41"') 
+
+    string(name: 'GCLOUD_CREDS_ID',
+        defaultValue: params.GCLOUD_CREDS_ID ?: 'gcloud-creds',
+        description: 'GCP Service Account Credentials')   
+
+  }
+
+  stages {
+    stage('Input Checks'){
+      steps {
+        script {
+
+      
+          if(! env.PROJECT){
+            error("NO PROJECT defined - stopping")
+          }
+
+
+        }   
+      }
+    }
+
+    stage('GCloud Auth Login') {
+      agent {
+        kubernetes {
+          defaultContainer 'jnlp'
+          yaml SDK_YAML
+        }
+      }
+  
+
+            steps {
+                script {
+                container('gcloud') {
+                    withCredentials([
+               file(credentialsId: "${GCLOUD_CREDS_ID}", variable: 'GCLOUD_CREDS_FILE'),
+              ])
+              {
+               sh '''
+                  echo "Login to GCP..."
+                  echo $GCLOUD_CREDS_FILE
+                  gcloud auth activate-service-account --key-file="$GCLOUD_CREDS_FILE"
+                  # List
+                  echo "my project id is $PROJECT"
+                  echo 'asim' > hello.txt
+                  docker ps -a
+
+               '''
+              }
+            }
+           }
+
+
+           container('node') {
+                    sh 'npm version'
+                    sh 'cat hello.txt'
+                    sh 'ls -last'
+                }
+
+
+
+
+
+            
+  }
+ }
+}
+
+
+}
+    
+  
