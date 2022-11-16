@@ -1,0 +1,4 @@
+# https://cloud.google.com/sdk/docs/authorizing
+
+
+1. gcloud auth login 
