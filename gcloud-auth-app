@@ -1,0 +1,7 @@
+PROJECT='playground-s-11-87349989'
+
+1. gcloud auth login
+
+2. gcloud iam service-accounts keys create key.json --iam-account=my-account@${PROJECT}.iam.gserviceaccount.com --project ${PROJECT}
+
+3. gcloud auth activate-service-account --key-file=key.json
