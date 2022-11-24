@@ -6,6 +6,9 @@ https://hub.docker.com/r/google/cloud-sdk/
 docker run --name gcp -id google/cloud-sdk:latest       # ---> google/sdk
 
 
+docker run --name gcp --network host -w /mnt -v ${PWD}/gcp:/mnt -id google/cloud-sdk:latest 
+
+
 ##############
 # Folder Mount
 ##############
