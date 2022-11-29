@@ -4,11 +4,13 @@
 
 # https://cloud.google.com/error-reporting/docs/check-app-crash
 
+export PROJECT=playground-s-11-f9429a3a
+
 git clone https://github.com/GoogleCloudPlatform/python-docs-samples
 
 cd python-docs-samples/appengine/standard_python3/hello_world
 
-gcloud app deploy --project playground-s-11-6af822fe # https://cloud.google.com/appengine/docs/flexible/reference/app-yaml?tab=python#service  (Note: in app.yaml define service: cloudgeeks) # deploy with default & then name it.
+gcloud app deploy --project ${PROJECT} # https://cloud.google.com/appengine/docs/flexible/reference/app-yaml?tab=python#service  (Note: in app.yaml define service: cloudgeeks) # deploy with default & then name it.
 
 runtime: python39
 service: cloudgeeks
