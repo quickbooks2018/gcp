@@ -4,7 +4,7 @@
 
 # https://cloud.google.com/error-reporting/docs/check-app-crash
 
-export PROJECT=playground-s-11-f9429a3a
+export PROJECT=playground-s-11-27d513b5
 
 git clone https://github.com/GoogleCloudPlatform/python-docs-samples
 
