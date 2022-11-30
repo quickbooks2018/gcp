@@ -15,7 +15,7 @@ gcloud app deploy --project ${PROJECT} # https://cloud.google.com/appengine/docs
 runtime: python39
 service: cloudgeeks
 
-gcloud app browse --project playground-s-11-6af822fe
+gcloud app browse --project ${PROJECT}
 
 
 ################
