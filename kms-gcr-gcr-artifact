@@ -1,0 +1,96 @@
+# https://cloud.google.com/kms/docs/encrypt-decrypt
+# GCP KMS Encryption & Decryption
+
+gcloud kms encrypt \
+    --key key \
+    --keyring key-ring \
+    --location location  \
+    --plaintext-file file-with-data-to-encrypt \
+    --ciphertext-file file-to-store-encrypted-data
+
+
+gcloud kms decrypt \
+    --key key \
+    --keyring key-ring \
+    --location location  \
+    --ciphertext-file file-path-with-encrypted-data \
+    --plaintext-file file-path-to-store-plaintext
+
+# PATH Copied: projects/playground-s-11-027aa59c/locations/us-central1/keyRings/cloudgeeks-key-ring/cryptoKeys/cloudgeeks
+############
+# Encryption
+############
+gcloud kms encrypt \
+    --key projects/playground-s-11-027aa59c/locations/us-central1/keyRings/cloudgeeks-key-ring/cryptoKeys/cloudgeeks \
+    --keyring projects/playground-s-11-027aa59c/locations/us-central1/keyRings/cloudgeeks-key-ring \
+    --location us-central1  \
+    --plaintext-file service_account.txt \
+    --ciphertext-file service_account.json-ENCCRYPTED   
+
+############
+# Decryption 
+############
+gcloud kms decrypt \
+    --key projects/playground-s-11-027aa59c/locations/us-central1/keyRings/cloudgeeks-key-ring/cryptoKeys/cloudgeeks \
+    --keyring projects/playground-s-11-027aa59c/locations/us-central1/keyRings/cloudgeeks-key-ring \
+    --location us-central1  \
+    --ciphertext-file service_account.json-ENCCRYPTED \
+    --plaintext-file service_account.json
+
+############################
+# Login with Service account
+############################
+# gcloud auth activate-service-account SERVICE_ACCOUNT@DOMAIN.COM --key-file=/path/key.json --project=PROJECT_ID
+
+export service_account=' cli-service-account-1@playground-s-11-027aa59c.iam.gserviceaccount.com'
+export key_json='service_account.json'
+export project_id='playground-s-11-027aa59c'
+gcloud auth activate-service-account ${service_account} --key-file=${key_json} --project=${project_id}
+
+################################
+# Google Artifact Registry Login
+#################################
+# Note: create a container repo 
+
+# To avoid inputs
+
+yes | gcloud auth configure-docker us-central1-docker.pkg.dev
+
+OR 
+
+gcloud auth configure-docker us-central1-docker.pkg.dev --quiet
+
+#####################
+GCP Artifact Repo TAG
+#####################
+export IMAGE_NAME=quickbooks2018/datree
+export IMAGE_TAG=75
+export project_id='playground-s-11-027aa59c'
+export artifact_registry_name='cloudgeeks'
+export gcr_artifact='us-central1-docker.pkg.dev'
+export gcr_artifact_registry="${gcr_artifact}/${project_id}/${artifact_registry_name}/${IMAGE_NAME}"
+
+
+docker tag ${IMAGE_NAME}:${IMAGE_TAG} ${gcr_artifact_registry}:${IMAGE_TAG}
+docker push ${gcr_artifact_registry}:${IMAGE_TAG}
+
+
+###########
+# GCR Login
+###########
+gcloud auth configure-docker --quiet
+
+###################
+# GCR  Registry TAG 
+###################
+export IMAGE_NAME=quickbooks2018/datree
+export IMAGE_TAG=75
+export project_id='playground-s-11-027aa59c'
+export registry_name='cloudgeeks'
+export gcr='gcr.io'
+export gcr_registry="${gcr}/${project_id}/${registry_name}"
+
+docker tag ${IMAGE_NAME}:${IMAGE_TAG} ${gcr_registry}:${IMAGE_TAG}
+docker push ${gcr_registry}:${IMAGE_TAG}
+
+
