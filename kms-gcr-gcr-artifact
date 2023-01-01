@@ -92,5 +92,3 @@ export gcr_registry="${gcr}/${project_id}/${registry_name}"
 
 docker tag ${IMAGE_NAME}:${IMAGE_TAG} ${gcr_registry}:${IMAGE_TAG}
 docker push ${gcr_registry}:${IMAGE_TAG}
-
-
