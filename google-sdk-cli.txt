@@ -8,6 +8,10 @@ docker run --name gcp -id google/cloud-sdk:latest       # ---> google/sdk
 
 docker run --name gcp --network host -w /mnt -v ${PWD}/gcp:/mnt -id google/cloud-sdk:latest 
 
+####################################################################################################################################################################
+docker run --name gcp-sandbox --network host -v /var/run/docker.sock:/var/run/docker.sock -w /mnt -v "c:/users/Muhammad Asim/Desktop/sandbox:/mnt" -id google/cloud-sdk:slim
+####################################################################################################################################################################
+
 
 ##############
 # Folder Mount
