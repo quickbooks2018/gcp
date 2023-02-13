@@ -1,8 +1,23 @@
 # Ubuntu
-https://snapcraft.io/install/google-cloud-sdk/ubuntu
-sudo apt update
-sudo apt install snapd
-sudo snap install google-cloud-sdk --classic
+https://cloud.google.com/blog/products/containers-kubernetes/kubectl-auth-changes-in-gke
+
+#!/bin/bash
+
+echo "Adding Google Cloud SDK repository..."
+echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+
+echo "Importing Google Cloud public key..."
+curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
+
+echo "Updating package list..."
+sudo apt-get update
+
+echo "Installing Google Cloud SDK..."
+sudo apt-get install google-cloud-sdk
+# End
+
+
+
 
 # DockerHub
 https://hub.docker.com/r/google/cloud-sdk/
