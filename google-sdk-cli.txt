@@ -1,5 +1,8 @@
 # Ubuntu
 https://snapcraft.io/install/google-cloud-sdk/ubuntu
+sudo apt update
+sudo apt install snapd
+sudo snap install google-cloud-sdk --classic
 
 # DockerHub
 https://hub.docker.com/r/google/cloud-sdk/
