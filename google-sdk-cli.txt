@@ -29,6 +29,22 @@ docker run --name gcp -id google/cloud-sdk:latest       # ---> google/sdk
 
 docker run --name gcp --network host -w /mnt -v ${PWD}/gcp:/mnt -id google/cloud-sdk:latest 
 
+##################
+# Docker in docker
+##################
+docker run --name gcp --network host -w /mnt -v $(which docker):/bin/docker -v /var/run/docker.sock:/var/run/docker.sock -v ${PWD}/gcp:/mnt -id google/cloud-sdk:latest 
+
+############################
+# Login with Service Account
+############################
+# https://cloud.google.com/sdk/gcloud/reference/auth/activate-service-account
+
+gcloud auth activate-service-account SERVICE_ACCOUNT@DOMAIN.COM --key-file=${PWD}/key.json --project=PROJECT_ID
+
+gcloud auth activate-service-account cli-service-account-1@playground-s-11-4bf8df67.iam.gserviceaccount.com --key-file=${PWD}/key.json --project=playground-s-11-4bf8df67
+
+
+
 ####################################################################################################################################################################
 docker run --name gcp-sandbox --network host -v /var/run/docker.sock:/var/run/docker.sock -w /mnt -v "c:/users/Muhammad Asim/Desktop/sandbox:/mnt" -id google/cloud-sdk:latest
 ####################################################################################################################################################################
