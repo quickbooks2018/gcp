@@ -29,6 +29,8 @@ docker run --name gcp -id google/cloud-sdk:latest       # ---> google/sdk
 
 docker run --name gcp --network host -w /mnt -v ${PWD}/gcp:/mnt -id google/cloud-sdk:latest 
 
+docker run --name gcp --network host -w /root -v ${HOME}:/root -id google/cloud-sdk:latest 
+
 ##################
 # Docker in docker
 ##################
