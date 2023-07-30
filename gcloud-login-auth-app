@@ -1,5 +1,9 @@
 # Install G-cloud-sdk https://cloud.google.com/sdk/docs/install#deb
 
+################################################################
+docker run --name gcp -v ${PWD}:/mnt -id google/cloud-sdk:latest
+################################################################
+
 export PROJECT='playground-s-11-87349989'
 
 1. gcloud auth login
