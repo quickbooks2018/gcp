@@ -1,3 +1,5 @@
+# Install G-cloud-sdk https://cloud.google.com/sdk/docs/install#deb
+
 export PROJECT='playground-s-11-87349989'
 
 1. gcloud auth login
