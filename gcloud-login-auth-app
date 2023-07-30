@@ -1,4 +1,4 @@
-PROJECT='playground-s-11-87349989'
+export PROJECT='playground-s-11-87349989'
 
 1. gcloud auth login
 
