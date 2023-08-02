@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: gcp-bucket-login-pod
+  namespace: gtok
+  labels:
+    role: myrole
+spec:
+  containers:
+    - name: gcloud-sdk
+      image: google/cloud-sdk:latest
+      command: ["/bin/bash", "-c", "--"]
+      args: ["while true; do sleep 300; done;"]
