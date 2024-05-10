@@ -27,4 +27,10 @@ gcloud config set project playground-s-11-25d5584b
 gcloud services enable container.googleapis.com
 
 gcloud container clusters create cloudgeeks --num-nodes=3 --zone=us-central1-a --release-channel=stable
+
+gcloud container clusters get-credentials cloudgeeks --zone us-central1-a
+
+gcloud container clusters update cloudgeeks --zone us-central1-a --logging=SYSTEM,WORKLOAD --monitoring=SYSTEM
+
+gcloud container clusters delete cloudgeeks --zone us-central1-a
 ```
