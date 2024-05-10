@@ -43,7 +43,7 @@ gcloud container clusters resize cloudgeeks --zone us-central1-a --size=2
 gcloud container clusters update cloudgeeks --zone us-central1-a --enable-autoscaling --min-nodes=1 --max-nodes=5
 
 # create new nodepool
-gcloud container node-pools create new-nodepool --cluster=cloudgeeks --zone=us-central1-a --num-nodes=1 --machine-type=n1-standard-2
+gcloud container node-pools create cloudgeeks-nodepool --cluster=cloudgeeks --zone=us-central1-a --num-nodes=1 --machine-type=n1-standard-2
 
 # delete cluster
 gcloud container clusters delete cloudgeeks --zone us-central1-a
