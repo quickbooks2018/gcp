@@ -16,3 +16,15 @@ gcloud auth activate-service-account --key-file=key.json
 sudo chown -R kasm-user:kasm-user /home/kasm-user/.config/gcloud
 chmod -R 700 /home/kasm-user/.config/gcloud
 ```
+
+- Gcloud CLI Set default project
+```bash
+gcloud config set project playground-s-11-25d5584b
+```
+
+- GKE create cluster with 3 nodes gcloud cli
+```bash
+gcloud services enable container.googleapis.com
+
+gcloud container clusters create cloudgeeks --num-nodes=3 --zone=us-central1-a --release-channel=stable
+```
