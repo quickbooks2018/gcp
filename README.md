@@ -39,6 +39,9 @@ gcloud container clusters update cloudgeeks --zone us-central1-a --logging=SYSTE
 # resize cluster
 gcloud container clusters resize cloudgeeks --zone us-central1-a --size=2
 
+# enable autoscaling
+gcloud container clusters update cloudgeeks --zone us-central1-a --enable-autoscaling --min-nodes=1 --max-nodes=5
+
 # delete cluster
 gcloud container clusters delete cloudgeeks --zone us-central1-a
 ```
