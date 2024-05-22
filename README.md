@@ -49,7 +49,7 @@ gcloud container node-pools create cloudgeeks-nodepool --cluster=cloudgeeks --zo
 gcloud container clusters delete cloudgeeks --zone us-central1-a
 ```
 
-- launch a VM with gcloud
+- launch a VM  (Genral purpose) with gcloud
 ```bash
 # on-demand
 gcloud compute instances create regular-vm-1 regular-vm-2 \
@@ -76,7 +76,7 @@ gcloud compute firewall-rules create allow-ssh-from-iap \
     --direction=INGRESS
 ```
 
-- launch vm's in a custom vpc
+- launch vm's (Genral purpose) in a custom vpc
 ```bash
 # Create a custom VPC
 gcloud compute networks create custom-vpc \
