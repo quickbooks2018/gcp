@@ -48,3 +48,29 @@ gcloud container node-pools create cloudgeeks-nodepool --cluster=cloudgeeks --zo
 # delete cluster
 gcloud container clusters delete cloudgeeks --zone us-central1-a
 ```
+
+- launch a VM with gcloud
+```bash
+gcloud compute instances create regular-vm-1 regular-vm-2 \
+    --zone=us-central1-b \
+    --image-project=ubuntu-os-cloud \
+    --image-family=ubuntu-2204-lts \
+    --tags=allow-ssh
+
+gcloud compute instances create spot-vm-1 spot-vm-2 \
+    --zone=us-central1-b \
+    --image-project=ubuntu-os-cloud \
+    --image-family=ubuntu-2204-lts \
+    --tags=allow-ssh \
+    --preemptible
+
+# Enable ssh from gcloud console only
+gcloud services enable iap.googleapis.com
+
+gcloud compute firewall-rules create allow-ssh-from-iap \
+    --allow tcp:22 \
+    --target-tags=allow-ssh \
+    --source-ranges=35.235.240.0/20 \
+    --description="Allow SSH access to VMs from Cloud IAP" \
+    --direction=INGRESS
+```
