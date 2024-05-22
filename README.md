@@ -51,12 +51,13 @@ gcloud container clusters delete cloudgeeks --zone us-central1-a
 
 - launch a VM with gcloud
 ```bash
+# on-demand
 gcloud compute instances create regular-vm-1 regular-vm-2 \
     --zone=us-central1-b \
     --image-project=ubuntu-os-cloud \
     --image-family=ubuntu-2204-lts \
     --tags=allow-ssh
-
+# preemptible
 gcloud compute instances create spot-vm-1 spot-vm-2 \
     --zone=us-central1-b \
     --image-project=ubuntu-os-cloud \
