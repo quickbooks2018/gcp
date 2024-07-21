@@ -42,16 +42,12 @@ server:
     - name: tls
       secret:
         secretName: vault-tls
-    - name: gcp-kms-config
-      secret:
-        secretName: gcp-kms-config
+    
   volumeMounts:
     - name: tls
       mountPath: /vault/tls
       readOnly: true
-    - name: gcp-kms-config
-      mountPath: /vault/gcp-kms-config
-      readOnly: true
+   
   standalone:
     enabled: false
   ha:
